@@ -10,12 +10,20 @@ One runtime C++ module, `SomethingStrange`. Single-player, so nothing is replica
 | Game mode | `Core/SSGameMode` | Sets Ned as the default pawn and the placeholder HUD |
 | Spectral vision | `Spectral/SSSpectralSubsystem` | World subsystem holding whether the goggles are on, with a change event |
 | | `Spectral/SSSpectralVisibilityComponent` | Makes its actor visible only while the goggles are on |
-| Player | `Player/SSPlayerCharacter` | First-person character; builds its input actions and key bindings in code |
+| Player | `Player/SSPlayerCharacter` | First-person character; builds its input actions and key bindings in code; restarts the level on death |
 | | `Player/SSGogglesComponent` | Charge, recharge delay, minimum charge to switch on |
+| | `Player/SSHealthComponent` | Ned's health, with damage, healing, and a death event |
+| | `Player/SSInventoryComponent` | Whether Ned has the goggles and the laser, and his residue |
 | Interaction | `Interaction/SSInteractable`, `SSInteractionComponent` | Interface for usable things; a trace finds the one in focus |
+| | `Interaction/SSDoor` | Hinged door, lockable |
+| | `Interaction/SSPickup` | Goggles, laser, residue, or health |
+| | `Interaction/SSPowerSwitch` | Switch with a power-changed event |
 | Laser | `Weapons/SSLaserWeapon` | Beam trace, heat and overheat, frequency selector |
 | Body parts | `Entities/SSBodyPartComponent` | Per-part health and merge state; resolves hits to parts; frequency-matched damage; merging over time |
-| Test entity | `Entities/SSTestDummy` | Stand-in built from engine shapes |
+| Entities | `Entities/SSEntityCharacter` | Base class: chases Ned, attacks with a named body part, drops residue when banished |
+| | `Entities/SSWisp` | First enemy: flying, a merged maw and an unmerged core |
+| | `Entities/SSTestDummy` | Stationary stand-in for testing the laser |
+| Rifts | `World/SSRift`, `World/SSRiftAnchor` | Spawns entities until all its anchors are destroyed, then seals |
 | HUD | `UI/SSHUD` | Canvas-drawn crosshair, bars, and prompts |
 
 None of this has been compiled yet: it was written without access to Unreal Engine. Expect to fix a few compile errors on first build.
@@ -35,6 +43,7 @@ A part's matching frequency comes from its merge amount: 0.5 or above is merged 
 ## Differences from the plan
 
 - **Frequencies are an enum, not data assets.** The project can then be tested with no content assets. If frequencies later need per-type data (icons, sounds, effects), move that into a data asset keyed by the enum.
+- **Entity behaviour is plain C++ for now, not StateTree.** StateTree behaviours are assets made in the editor. The base class has a simple chase-and-attack loop so enemies work immediately; replace it per entity type once the project is building.
 - **Damage resolution lives in `USSBodyPartComponent`** instead of a separate damage component. One component owns the part state and the rules that change it.
 
 ## Planned
@@ -42,12 +51,11 @@ A part's matching frequency comes from its merge amount: 0.5 or above is merged 
 | System | Classes | Notes |
 |---|---|---|
 | Game flow | `USSGameInstance`, `USSSaveGame` | Level transitions, checkpoints, persistent upgrades |
-| Player | `USSHealthComponent`, `USSInventoryComponent` | |
-| Entities | `USSEntityDefinition`, `ASSEntityCharacter`, `ASSEntityAIController` | Definition as a `UPrimaryDataAsset` (parts, starting merge states, merge rate, behaviour, residue drop). Behaviour in StateTree. Attacks disabled when their part is destroyed |
+| Entities | `ASSPoltergeist`, `ASSShade`, the rift demon | The shade's freeze-while-watched rule is already a flag on the base class. The poltergeist needs object throwing |
+| Entity data | `USSEntityDefinition` | `UPrimaryDataAsset` (parts, starting merge states, merge rate, behaviour, residue drop), once entities have real meshes |
 | Merge visuals | Master entity material | Per-part merge value blending the spectral look into the solid look; unmerged parts drawn only while the goggles are on |
 | Gore | `USSGoreComponent` | Listens to `OnPartDestroyed`: hides the part's bones, shows the stump, spawns the severed piece, blood and burn effects, and persistent decals |
 | Goggles look | Post-process material | Uses the custom depth stencil already enabled in `Config/DefaultEngine.ini` |
-| Rifts | `ASSRift`, `ASSRiftAnchor` | Spawns entities; sealed when all anchors are destroyed |
 | Story | `USSObjectiveSubsystem`, `USSDialogueSubsystem` | Objectives and subtitles from data tables; cutscenes in Sequencer |
 | Upgrades | `USSUpgradeDefinition`, `USSUpgradeSubsystem` | Data assets applied to goggles and laser stats |
 | UI | `USSHUDWidget` and menus | UMG, replacing `ASSHUD` |

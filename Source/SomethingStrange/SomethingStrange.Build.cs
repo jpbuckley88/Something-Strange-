@@ -14,7 +14,8 @@ public class SomethingStrange : ModuleRules
 			"CoreUObject",
 			"Engine",
 			"InputCore",
-			"EnhancedInput"
+			"EnhancedInput",
+			"AIModule"
 		});
 	}
 }

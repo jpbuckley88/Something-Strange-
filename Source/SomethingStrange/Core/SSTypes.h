@@ -16,6 +16,16 @@ enum class ESSFrequency : uint8
 	Spectral
 };
 
+/** What a pickup gives Ned. */
+UENUM(BlueprintType)
+enum class ESSPickupType : uint8
+{
+	Goggles,
+	Laser,
+	Residue,
+	Health
+};
+
 /** One targetable part of an entity (an arm, the jaw, the core). */
 USTRUCT(BlueprintType)
 struct FSSBodyPartState

@@ -9,6 +9,8 @@ class UCameraComponent;
 class UInputAction;
 class UInputMappingContext;
 class USSGogglesComponent;
+class USSHealthComponent;
+class USSInventoryComponent;
 class USSInteractionComponent;
 struct FInputActionValue;
 
@@ -37,6 +39,23 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Ned")
 	ASSLaserWeapon* GetLaser() const { return Laser; }
 
+	UFUNCTION(BlueprintPure, Category = "Ned")
+	USSHealthComponent* GetHealthComponent() const { return Health; }
+
+	UFUNCTION(BlueprintPure, Category = "Ned")
+	USSInventoryComponent* GetInventory() const { return Inventory; }
+
+	/**
+	 * Start with the goggles and the laser. Turn off in levels where Ned has to
+	 * find them, such as the start of the house.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Ned")
+	bool bStartWithEquipment = true;
+
+	/** Seconds between dying and the level restarting. */
+	UPROPERTY(EditDefaultsOnly, Category = "Ned", meta = (ClampMin = "0.1"))
+	float RestartDelay = 2.5f;
+
 	/** Laser class to spawn. Point this at a Blueprint subclass once the weapon has a mesh. */
 	UPROPERTY(EditDefaultsOnly, Category = "Ned")
 	TSubclassOf<ASSLaserWeapon> LaserClass;
@@ -61,6 +80,13 @@ private:
 	void ToggleGoggles();
 	void CycleFrequency();
 
+	UFUNCTION()
+	void HandleDied();
+
+	void RestartLevel();
+
+	FTimerHandle RestartTimer;
+
 	UPROPERTY(VisibleAnywhere, Category = "Ned")
 	TObjectPtr<UCameraComponent> Camera;
 
@@ -69,6 +95,12 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Ned")
 	TObjectPtr<USSInteractionComponent> Interaction;
+
+	UPROPERTY(VisibleAnywhere, Category = "Ned")
+	TObjectPtr<USSHealthComponent> Health;
+
+	UPROPERTY(VisibleAnywhere, Category = "Ned")
+	TObjectPtr<USSInventoryComponent> Inventory;
 
 	UPROPERTY(Transient)
 	TObjectPtr<ASSLaserWeapon> Laser;

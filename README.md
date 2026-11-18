@@ -46,6 +46,20 @@ What to expect from the dummy:
 - The **core** on top is invisible until the goggles are on. Destroy it with the spectral beam to banish the dummy.
 - Holding fire fills the heat bar; at full the laser cuts out until it cools.
 
+### More things to place
+
+All of these are in the **Place Actors** panel and work with no content assets.
+
+| Actor | What it does |
+|---|---|
+| **SS Wisp** | A small flying enemy. Its orange maw is what bites: destroy it with the material beam and the wisp is harmless. Its core shows only through the goggles; destroy that with the spectral beam to banish it. It drops residue. |
+| **SS Rift** and **SS Rift Anchor** | Place a rift and a few anchors, then select the rift and add the anchors to its **Anchors** list and **SS Wisp** to its **Entity Classes**. The rift spawns wisps until every anchor is destroyed. Anchors show only through the goggles and take the spectral beam. |
+| **SS Door** | Opens and closes with E. Tick **Locked** to lock it. |
+| **SS Pickup** | Set **Type** to Goggles, Laser, Residue, or Health. To make Ned find his equipment, place Goggles and Laser pickups and untick **Start With Equipment** on the player. |
+| **SS Power Switch** | Fires an event when switched on, for the level Blueprint to turn the lights back on. |
+
+If Ned's health reaches zero, the level restarts after a moment.
+
 ## Repository layout
 
 ```

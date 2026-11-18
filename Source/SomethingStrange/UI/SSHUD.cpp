@@ -4,6 +4,8 @@
 #include "Engine/Canvas.h"
 #include "Interaction/SSInteractionComponent.h"
 #include "Player/SSGogglesComponent.h"
+#include "Player/SSHealthComponent.h"
+#include "Player/SSInventoryComponent.h"
 #include "Player/SSPlayerCharacter.h"
 #include "Weapons/SSLaserWeapon.h"
 
@@ -31,7 +33,16 @@ void ASSHUD::DrawHUD()
 
 	const float CenterX = Canvas->SizeX * 0.5f;
 	const float CenterY = Canvas->SizeY * 0.5f;
-	const ASSLaserWeapon* Laser = Ned->GetLaser();
+	const USSInventoryComponent* Inventory = Ned->GetInventory();
+	const USSHealthComponent* Health = Ned->GetHealthComponent();
+	const ASSLaserWeapon* Laser = Inventory->HasLaser() ? Ned->GetLaser() : nullptr;
+
+	if (Health->IsDead())
+	{
+		DrawRect(FLinearColor(0.3f, 0.f, 0.f, 0.6f), 0.f, 0.f, Canvas->SizeX, Canvas->SizeY);
+		DrawText(TEXT("NED IS DEAD"), FLinearColor::Red, CenterX - 110.f, CenterY - 20.f, nullptr, 2.5f);
+		return;
+	}
 
 	// Crosshair, tinted with the current beam colour.
 	const FLinearColor CrosshairColor = Laser ? Laser->GetBeamColor() : FLinearColor::White;
@@ -51,11 +62,18 @@ void ASSHUD::DrawHUD()
 		Y -= 30.f;
 	}
 
-	if (const USSGogglesComponent* Goggles = Ned->GetGoggles())
+	if (Inventory->HasGoggles())
 	{
+		const USSGogglesComponent* Goggles = Ned->GetGoggles();
 		const FString GogglesLabel = Goggles->AreGogglesActive() ? TEXT("GOGGLES - ON") : TEXT("GOGGLES");
 		DrawBar(Margin, Y, Goggles->GetChargeFraction(), FLinearColor(0.1f, 0.9f, 1.f), GogglesLabel);
+		Y -= BarHeight + 26.f;
 	}
+
+	DrawBar(Margin, Y, Health->GetHealthFraction(), FLinearColor(0.8f, 0.05f, 0.05f), TEXT("HEALTH"));
+
+	const FString ResidueText = FString::Printf(TEXT("RESIDUE: %d"), Inventory->GetResidue());
+	DrawText(ResidueText, FLinearColor(0.4f, 1.f, 0.2f), Canvas->SizeX - Margin - 160.f, Canvas->SizeY - Margin - 20.f, nullptr, 1.2f);
 
 	if (const USSInteractionComponent* Interaction = Ned->GetInteraction())
 	{

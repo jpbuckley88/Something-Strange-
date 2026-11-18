@@ -12,7 +12,11 @@
 #include "InputMappingContext.h"
 #include "InputModifiers.h"
 #include "Interaction/SSInteractionComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Player/SSGogglesComponent.h"
+#include "Player/SSHealthComponent.h"
+#include "Player/SSInventoryComponent.h"
+#include "TimerManager.h"
 #include "Weapons/SSLaserWeapon.h"
 
 ASSPlayerCharacter::ASSPlayerCharacter()
@@ -26,6 +30,8 @@ ASSPlayerCharacter::ASSPlayerCharacter()
 
 	Goggles = CreateDefaultSubobject<USSGogglesComponent>(TEXT("Goggles"));
 	Interaction = CreateDefaultSubobject<USSInteractionComponent>(TEXT("Interaction"));
+	Health = CreateDefaultSubobject<USSHealthComponent>(TEXT("Health"));
+	Inventory = CreateDefaultSubobject<USSInventoryComponent>(TEXT("Inventory"));
 
 	LaserClass = ASSLaserWeapon::StaticClass();
 }
@@ -33,6 +39,14 @@ ASSPlayerCharacter::ASSPlayerCharacter()
 void ASSPlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Health->OnDied.AddDynamic(this, &ASSPlayerCharacter::HandleDied);
+
+	if (bStartWithEquipment)
+	{
+		Inventory->GiveGoggles();
+		Inventory->GiveLaser();
+	}
 
 	if (LaserClass)
 	{
@@ -171,7 +185,7 @@ void ASSPlayerCharacter::Interact()
 
 void ASSPlayerCharacter::StartFire()
 {
-	if (Laser)
+	if (Laser && Inventory->HasLaser())
 	{
 		Laser->StartFire();
 	}
@@ -187,13 +201,31 @@ void ASSPlayerCharacter::StopFire()
 
 void ASSPlayerCharacter::ToggleGoggles()
 {
-	Goggles->ToggleGoggles();
+	if (Inventory->HasGoggles())
+	{
+		Goggles->ToggleGoggles();
+	}
 }
 
 void ASSPlayerCharacter::CycleFrequency()
 {
-	if (Laser)
+	if (Laser && Inventory->HasLaser())
 	{
 		Laser->CycleFrequency();
 	}
+}
+
+void ASSPlayerCharacter::HandleDied()
+{
+	StopFire();
+	Goggles->SetGogglesActive(false);
+	DisableInput(Cast<APlayerController>(GetController()));
+
+	GetWorldTimerManager().SetTimer(RestartTimer, this, &ASSPlayerCharacter::RestartLevel, RestartDelay, false);
+}
+
+void ASSPlayerCharacter::RestartLevel()
+{
+	// Placeholder for checkpoints: reload the current level from the start.
+	UGameplayStatics::OpenLevel(this, FName(*UGameplayStatics::GetCurrentLevelName(this, true)));
 }

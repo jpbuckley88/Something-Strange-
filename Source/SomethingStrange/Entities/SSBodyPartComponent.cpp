@@ -5,7 +5,14 @@
 #include "Engine/HitResult.h"
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "Spectral/SSSpectralSubsystem.h"
+
+namespace
+{
+	const FLinearColor MergedTint(1.f, 0.35f, 0.05f);
+	const FLinearColor UnmergedTint(0.1f, 0.9f, 1.f);
+}
 
 USSBodyPartComponent::USSBodyPartComponent()
 {
@@ -201,6 +208,15 @@ void USSBodyPartComponent::RefreshPartVisibility()
 		{
 			UPrimitiveComponent* Primitive = CastChecked<UPrimitiveComponent>(Component);
 			Primitive->SetVisibility(bVisible);
+
+			if (bTintPlaceholderMeshes)
+			{
+				// The engine's basic shape material exposes a "Color" parameter.
+				if (UMaterialInstanceDynamic* Material = Primitive->CreateDynamicMaterialInstance(0))
+				{
+					Material->SetVectorParameterValue(TEXT("Color"), Part.IsMerged() ? MergedTint : UnmergedTint);
+				}
+			}
 
 			if (Part.bDestroyed)
 			{

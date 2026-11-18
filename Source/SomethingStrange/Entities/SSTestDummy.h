@@ -29,12 +29,6 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UFUNCTION()
-	void HandlePartMergeChanged(FName PartName, bool bMerged);
-
-	void SetPartColor(UStaticMeshComponent* Mesh, bool bMerged) const;
-	UStaticMeshComponent* FindPartMesh(FName PartName) const;
-
 	UPROPERTY(VisibleAnywhere, Category = "Dummy")
 	TObjectPtr<UStaticMeshComponent> Torso;
 

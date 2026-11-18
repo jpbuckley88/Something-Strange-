@@ -57,6 +57,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Parts")
 	bool bDestroyOwnerOnBanish = true;
 
+	/**
+	 * For stand-ins built from engine shapes: colour tagged components orange when
+	 * merged and blue when unmerged, matching the laser's beam colours.
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Parts")
+	bool bTintPlaceholderMeshes = false;
+
 	/** Fired when a part crosses between unmerged and merged. */
 	UPROPERTY(BlueprintAssignable, Category = "Body Parts")
 	FSSOnPartMergeChanged OnPartMergeChanged;

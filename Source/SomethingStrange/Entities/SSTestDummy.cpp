@@ -6,21 +6,14 @@
 #include "Materials/MaterialInstanceDynamic.h"
 #include "UObject/ConstructorHelpers.h"
 
-namespace
-{
-	const FName ArmTag(TEXT("Arm"));
-	const FName LegTag(TEXT("Leg"));
-	const FName CoreTag(TEXT("Core"));
-
-	// Same colours as the laser's beams, so a part's look says which frequency hurts it.
-	const FLinearColor MergedColor(1.f, 0.35f, 0.05f);
-	const FLinearColor UnmergedColor(0.1f, 0.9f, 1.f);
-}
-
 ASSTestDummy::ASSTestDummy()
 {
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> CubeMesh(TEXT("/Engine/BasicShapes/Cube.Cube"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> SphereMesh(TEXT("/Engine/BasicShapes/Sphere.Sphere"));
+
+	const FName ArmTag(TEXT("Arm"));
+	const FName LegTag(TEXT("Leg"));
+	const FName CoreTag(TEXT("Core"));
 
 	// Engine basic shapes are 100 units across with the pivot at the centre.
 	Torso = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Torso"));
@@ -51,6 +44,7 @@ ASSTestDummy::ASSTestDummy()
 	Core->ComponentTags.Add(CoreTag);
 
 	BodyParts = CreateDefaultSubobject<USSBodyPartComponent>(TEXT("BodyParts"));
+	BodyParts->bTintPlaceholderMeshes = true;
 
 	FSSBodyPartState ArmPart;
 	ArmPart.PartName = ArmTag;
@@ -82,47 +76,4 @@ void ASSTestDummy::BeginPlay()
 	{
 		TorsoMaterial->SetVectorParameterValue(TEXT("Color"), FLinearColor(0.3f, 0.3f, 0.3f));
 	}
-
-	for (const FSSBodyPartState& Part : BodyParts->Parts)
-	{
-		SetPartColor(FindPartMesh(Part.PartName), Part.IsMerged());
-	}
-
-	BodyParts->OnPartMergeChanged.AddDynamic(this, &ASSTestDummy::HandlePartMergeChanged);
-}
-
-void ASSTestDummy::HandlePartMergeChanged(FName PartName, bool bMerged)
-{
-	SetPartColor(FindPartMesh(PartName), bMerged);
-}
-
-void ASSTestDummy::SetPartColor(UStaticMeshComponent* Mesh, bool bMerged) const
-{
-	if (!Mesh)
-	{
-		return;
-	}
-
-	// The engine's basic shape material exposes a "Color" parameter.
-	if (UMaterialInstanceDynamic* Material = Mesh->CreateDynamicMaterialInstance(0))
-	{
-		Material->SetVectorParameterValue(TEXT("Color"), bMerged ? MergedColor : UnmergedColor);
-	}
-}
-
-UStaticMeshComponent* ASSTestDummy::FindPartMesh(FName PartName) const
-{
-	if (PartName == ArmTag)
-	{
-		return Arm;
-	}
-	if (PartName == LegTag)
-	{
-		return Leg;
-	}
-	if (PartName == CoreTag)
-	{
-		return Core;
-	}
-	return nullptr;
 }
