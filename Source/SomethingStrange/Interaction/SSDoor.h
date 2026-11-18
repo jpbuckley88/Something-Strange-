@@ -8,6 +8,8 @@
 class USceneComponent;
 class UStaticMeshComponent;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSSOnDoorToggled, bool, bOpen);
+
 /**
  * A hinged door. The actor's origin is the hinge, at floor level. The default
  * mesh is a 100 x 10 x 200 slab; swap it in a Blueprint subclass.
@@ -42,6 +44,9 @@ public:
 	/** Degrees per second. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Door", meta = (ClampMin = "1.0"))
 	float SwingSpeed = 180.f;
+
+	UPROPERTY(BlueprintAssignable, Category = "Door")
+	FSSOnDoorToggled OnDoorToggled;
 
 	virtual void Tick(float DeltaTime) override;
 

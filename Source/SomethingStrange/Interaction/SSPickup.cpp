@@ -42,6 +42,7 @@ void ASSPickup::BeginPlay()
 	case ESSPickupType::Laser:   Color = FLinearColor(1.f, 0.35f, 0.05f); break;
 	case ESSPickupType::Residue: Color = FLinearColor(0.4f, 1.f, 0.2f); break;
 	case ESSPickupType::Health:  Color = FLinearColor(0.9f, 0.05f, 0.05f); break;
+	case ESSPickupType::Part:    Color = FLinearColor(1.f, 0.9f, 0.2f); break;
 	}
 
 	if (UMaterialInstanceDynamic* Material = Mesh->CreateDynamicMaterialInstance(0))
@@ -83,6 +84,10 @@ FText ASSPickup::GetInteractionPrompt_Implementation() const
 	case ESSPickupType::Laser:   return INVTEXT("Take the laser");
 	case ESSPickupType::Residue: return INVTEXT("Collect residue");
 	case ESSPickupType::Health:  return INVTEXT("Use first aid");
+	case ESSPickupType::Part:
+		return DisplayName.IsEmpty()
+			? INVTEXT("Take")
+			: FText::Format(INVTEXT("Take the {0}"), DisplayName);
 	}
 
 	return FText::GetEmpty();
@@ -103,6 +108,9 @@ void ASSPickup::Collect(ASSPlayerCharacter* Ned)
 		break;
 	case ESSPickupType::Health:
 		Ned->GetHealthComponent()->Heal(static_cast<float>(Amount));
+		break;
+	case ESSPickupType::Part:
+		Ned->GetInventory()->AddItem(ItemId);
 		break;
 	}
 

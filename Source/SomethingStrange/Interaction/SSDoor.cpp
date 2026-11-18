@@ -43,8 +43,14 @@ FText ASSDoor::GetInteractionPrompt_Implementation() const
 
 void ASSDoor::SetOpen(bool bNewOpen)
 {
+	if (bOpen == bNewOpen)
+	{
+		return;
+	}
+
 	bOpen = bNewOpen;
 	SetActorTickEnabled(true);
+	OnDoorToggled.Broadcast(bOpen);
 }
 
 void ASSDoor::Tick(float DeltaTime)

@@ -7,6 +7,8 @@
 #include "Player/SSHealthComponent.h"
 #include "Player/SSInventoryComponent.h"
 #include "Player/SSPlayerCharacter.h"
+#include "Story/SSDialogueSubsystem.h"
+#include "Story/SSObjectiveSubsystem.h"
 #include "Weapons/SSLaserWeapon.h"
 
 namespace
@@ -43,6 +45,8 @@ void ASSHUD::DrawHUD()
 		DrawText(TEXT("NED IS DEAD"), FLinearColor::Red, CenterX - 110.f, CenterY - 20.f, nullptr, 2.5f);
 		return;
 	}
+
+	DrawStory();
 
 	// Crosshair, tinted with the current beam colour.
 	const FLinearColor CrosshairColor = Laser ? Laser->GetBeamColor() : FLinearColor::White;
@@ -90,4 +94,43 @@ void ASSHUD::DrawBar(float X, float Y, float Fraction, const FLinearColor& FillC
 	DrawText(Label, FLinearColor::White, X, Y - 18.f);
 	DrawRect(FLinearColor(0.f, 0.f, 0.f, 0.5f), X, Y, BarWidth, BarHeight);
 	DrawRect(FillColor, X, Y, BarWidth * FMath::Clamp(Fraction, 0.f, 1.f), BarHeight);
+}
+
+void ASSHUD::DrawCenteredText(const FString& Text, const FLinearColor& Color, float Y, float Scale)
+{
+	float Width = 0.f;
+	float Height = 0.f;
+	GetTextSize(Text, Width, Height, nullptr, Scale);
+	DrawText(Text, Color, (Canvas->SizeX - Width) * 0.5f, Y, nullptr, Scale);
+}
+
+void ASSHUD::DrawStory()
+{
+	const UWorld* World = GetWorld();
+
+	if (const USSObjectiveSubsystem* Objectives = World->GetSubsystem<USSObjectiveSubsystem>())
+	{
+		const FText Objective = Objectives->GetObjective();
+		if (!Objective.IsEmpty())
+		{
+			DrawText(TEXT("OBJECTIVE"), FLinearColor(1.f, 0.9f, 0.2f), Margin, Margin);
+			DrawText(Objective.ToString(), FLinearColor::White, Margin, Margin + 18.f, nullptr, 1.3f);
+		}
+
+		const FText Hint = Objectives->GetHint();
+		if (!Hint.IsEmpty())
+		{
+			DrawCenteredText(Hint.ToString(), FLinearColor(1.f, 0.9f, 0.2f), Canvas->SizeY * 0.68f, 1.4f);
+		}
+	}
+
+	if (const USSDialogueSubsystem* Dialogue = World->GetSubsystem<USSDialogueSubsystem>())
+	{
+		if (Dialogue->IsPlaying())
+		{
+			const FSSDialogueLine Line = Dialogue->GetCurrentLine();
+			const FString Subtitle = FString::Printf(TEXT("%s: %s"), *Line.Speaker.ToString(), *Line.Text.ToString());
+			DrawCenteredText(Subtitle, FLinearColor::White, Canvas->SizeY * 0.8f, 1.4f);
+		}
+	}
 }

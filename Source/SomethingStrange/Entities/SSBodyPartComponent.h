@@ -7,6 +7,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSSOnPartMergeChanged, FName, PartName, bool, bMerged);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSSOnPartDestroyed, FName, PartName);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FSSOnPartDamaged, FName, PartName, ESSFrequency, Frequency, bool, bMatched, float, BaseDamage);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FSSOnBanished);
 
 /**
@@ -67,6 +68,10 @@ public:
 	/** Fired when a part crosses between unmerged and merged. */
 	UPROPERTY(BlueprintAssignable, Category = "Body Parts")
 	FSSOnPartMergeChanged OnPartMergeChanged;
+
+	/** Fired every time the beam lands on a part, with the damage before multipliers. */
+	UPROPERTY(BlueprintAssignable, Category = "Body Parts")
+	FSSOnPartDamaged OnPartDamaged;
 
 	UPROPERTY(BlueprintAssignable, Category = "Body Parts")
 	FSSOnPartDestroyed OnPartDestroyed;

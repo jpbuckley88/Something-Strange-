@@ -61,6 +61,29 @@ All of these are in the **Place Actors** panel and work with no content assets.
 
 If Ned's health reaches zero, the level restarts after a moment.
 
+### Setting up the prologue
+
+The prologue in [docs/Script.md](docs/Script.md) is run by one actor, **SS Prologue Director**. It sets the objectives, shows the control hints, plays the subtitled lines, and moves on as the player does each thing. Place the actors below in a level, then select the director and point each of its properties at them.
+
+| Director property | Actor to place | Settings on that actor |
+|---|---|---|
+| Front Door | SS Door | Put the player start outside it, facing it |
+| (Shoulder Item Id) | SS Pickup, in the freezer | Type: Part. Item Id: `PorkShoulder`. Display Name: pork shoulder |
+| Lab Trigger | Trigger Box at the bottom of the basement stairs | |
+| Goggles Workbench | SS Workbench | Result: Goggles. Result Name: goggles. Required Items: `LensArray`, `TuningCoil`, `PowerCell` |
+| | Three SS Pickups around the basement | Type: Part. Item Ids as above, with Display Names |
+| Laser Workbench | SS Workbench | Result: Laser. Result Name: emitter. Required Items: empty |
+| Paint Can | SS Tutorial Target | Merged: on. Indestructible: off |
+| Meat | SS Tutorial Target | Merged: on. Indestructible: on. Start Active: off |
+| Specimen | SS Tutorial Target, on the goggles bench | Merged: off. Indestructible: on |
+| Aperture Switches | Three SS Power Switches | |
+
+Any property left empty is skipped, so the sequence can be tested with only some of the actors placed. If there is no freezer pickup yet, clear **Shoulder Item Id** on the director, or the sequence will wait for it.
+
+When the last switch is thrown the director fires **On Prologue Finished**. Nothing happens after that yet: the cutscene of Mom being taken and the start of Level 1 hook in there.
+
+The lines of dialogue are in `Source/SomethingStrange/Story/SSPrologueDirector.cpp`, as plain text near the middle of the file.
+
 ## Repository layout
 
 ```

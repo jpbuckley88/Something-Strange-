@@ -23,7 +23,9 @@ enum class ESSPickupType : uint8
 	Goggles,
 	Laser,
 	Residue,
-	Health
+	Health,
+	/** A named item, such as a component for the workbench. */
+	Part
 };
 
 /** One targetable part of an entity (an arm, the jaw, the core). */
@@ -53,6 +55,10 @@ struct FSSBodyPartState
 	/** Merge gained per second. 0 keeps the part in its starting state. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Part", meta = (ClampMin = "0.0"))
 	float MergeRate = 0.f;
+
+	/** Takes hits and reports them, but never loses health. For tutorial targets. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Part")
+	bool bIndestructible = false;
 
 	/** Destroying the core banishes the whole entity. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Part")

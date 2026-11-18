@@ -11,7 +11,8 @@ class USphereComponent;
 class UStaticMeshComponent;
 
 /**
- * Something Ned can pick up: the goggles, the laser, residue, or health.
+ * Something Ned can pick up: the goggles, the laser, residue, health, or a
+ * named part.
  * Residue and health are collected by walking over them; equipment needs
  * the interact key.
  */
@@ -29,7 +30,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pickup")
 	ESSPickupType Type = ESSPickupType::Residue;
 
-	/** Residue units or health points. Ignored for equipment. */
+	/** For parts: the item added to the inventory, for example "LensArray". */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pickup")
+	FName ItemId;
+
+	/** For parts: the name shown in the prompt, for example "lens array". */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pickup")
+	FText DisplayName;
+
+	/** Residue units or health points. Ignored for equipment and parts. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pickup", meta = (ClampMin = "0"))
 	int32 Amount = 1;
 

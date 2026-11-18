@@ -6,7 +6,8 @@
 
 /**
  * Canvas-drawn placeholder HUD: crosshair, goggle charge, laser heat and
- * frequency, interaction prompt. To be replaced by UMG widgets.
+ * frequency, health, objective, hints, subtitles, interaction prompt. To be
+ * replaced by UMG widgets.
  */
 UCLASS()
 class SOMETHINGSTRANGE_API ASSHUD : public AHUD
@@ -18,4 +19,6 @@ public:
 
 private:
 	void DrawBar(float X, float Y, float Fraction, const FLinearColor& FillColor, const FString& Label);
+	void DrawCenteredText(const FString& Text, const FLinearColor& Color, float Y, float Scale);
+	void DrawStory();
 };

@@ -276,11 +276,13 @@ Each instruction appears once, as a short line on screen, when the player first 
 
 | Need | Status |
 |---|---|
-| Objectives shown on screen and completed by events | To build |
-| On-screen instruction prompts | To build |
-| Collectable parts and an assemble interaction at the workbench | To build; extends the pickup and interaction code |
-| Subtitles and voice lines | To build |
-| Tutorial targets that react to the beam (paint can, meat) | To build; the body-part component already does the damage rules |
-| The specimen jar | Mostly exists: an unmerged body part that only the goggles show |
+| Objectives shown on screen and completed by events | Written |
+| On-screen instruction prompts | Written |
+| Collectable parts and an assemble interaction at the workbench | Written |
+| Subtitles | Written, as text. Lines are shortened from this script |
+| Voice lines | To record |
+| Tutorial targets that react to the beam (paint can, meat) | Written, as tinted cubes; the searing and bursting effects are to do |
+| The specimen jar | Written, as a target only the goggles show; its flinch and the cracking jar are to do |
+| The sequence itself | Written: the prologue director. Setup is in the README |
 | Mom on screen, the arm, the grab | Animated cutscene in Sequencer; the most expensive single moment in the prologue |
 | The front step | A door, a step, and a backdrop; no street to build |

@@ -19,6 +19,25 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	void GiveLaser();
 
+	/** Takes the laser away, for example when its power cell bursts. */
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	void RemoveLaser();
+
+	/** Takes away the goggles and the laser. */
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	void RemoveEquipment();
+
+	/** Adds a named item, such as a workbench component. */
+	UFUNCTION(BlueprintCallable, Category = "Inventory")
+	void AddItem(FName ItemId);
+
+	UFUNCTION(BlueprintPure, Category = "Inventory")
+	bool HasItem(FName ItemId) const { return Items.Contains(ItemId); }
+
+	/** How many of these items Ned is carrying. */
+	UFUNCTION(BlueprintPure, Category = "Inventory")
+	int32 CountItems(const TArray<FName>& ItemIds) const;
+
 	UFUNCTION(BlueprintCallable, Category = "Inventory")
 	void AddResidue(int32 Amount);
 
@@ -42,4 +61,5 @@ private:
 	bool bHasGoggles = false;
 	bool bHasLaser = false;
 	int32 Residue = 0;
+	TSet<FName> Items;
 };

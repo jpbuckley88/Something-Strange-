@@ -148,8 +148,16 @@ float USSBodyPartComponent::ApplyBeamDamage(const FHitResult& Hit, ESSFrequency 
 	const bool bMatched = Part.GetMatchingFrequency() == Frequency;
 	const float Damage = BaseDamage * (bMatched ? MatchedDamageMultiplier : MismatchedDamageMultiplier);
 
-	Part.Health = FMath::Max(0.f, Part.Health - Damage);
-	if (Part.Health <= 0.f)
+	if (!Part.bIndestructible)
+	{
+		Part.Health = FMath::Max(0.f, Part.Health - Damage);
+	}
+	const bool bDestroyed = Part.Health <= 0.f;
+
+	// Part is not used after this: a listener may change the Parts array.
+	OnPartDamaged.Broadcast(Part.PartName, Frequency, bMatched, BaseDamage);
+
+	if (bDestroyed)
 	{
 		DestroyPart(PartIndex);
 	}
