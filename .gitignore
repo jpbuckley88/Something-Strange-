@@ -1,0 +1,29 @@
+# Unreal Engine generated
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Build/
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+
+# IDE and project files
+.vs/
+.vscode/
+.idea/
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
+*.VC.db
+*.opensdf
+*.sdf
+
+# Blender backups and Python caches
+*.blend1
+*.blend2
+__pycache__/
+
+# OS
+.DS_Store
+Thumbs.db

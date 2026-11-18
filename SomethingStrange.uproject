@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.6",
+	"Category": "",
+	"Description": "Story-driven FPS ghost hunting horror game.",
+	"Modules": [
+		{
+			"Name": "SomethingStrange",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
