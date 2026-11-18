@@ -17,7 +17,8 @@ M4 is the decision point. If the greybox level is not tense and fun to play, cha
 1. Build the project in UE5 and fix any compile errors.
 2. Play the test dummy, a wisp, and a rift (see the README) and tune charge, heat, damage, and speed values.
 3. Block out the house from the room list in [Story.md](Story.md), with doors, pickups, and a navigation mesh.
-4. Write the shade and the poltergeist.
-5. Add objectives and checkpoints, then the rift demon.
+4. Build what the prologue needs (listed at the end of [Script.md](Script.md)): objectives, on-screen prompts, collectable parts, the workbench, and tutorial targets.
+5. Write the shade and the poltergeist.
+6. Add checkpoints, then the rift demon.
 
 Art can run in parallel from step 3: fix the art bible, then generate and clean up kitchen and living room props.

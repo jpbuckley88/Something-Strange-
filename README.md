@@ -10,6 +10,7 @@ Ned is a teenage genius. One of his experiments tears open the spirit realm, let
 |---|---|
 | [docs/GDD.md](docs/GDD.md) | Game design: mechanics, entities, progression |
 | [docs/Story.md](docs/Story.md) | Story outline and the Level 1 beat sheet |
+| [docs/Script.md](docs/Script.md) | Prologue script, including the tutorial |
 | [docs/TechnicalDesign.md](docs/TechnicalDesign.md) | Code architecture and what exists so far |
 | [docs/AssetPipeline.md](docs/AssetPipeline.md) | Tripo 3D to Blender to UE5 workflow |
 | [docs/Roadmap.md](docs/Roadmap.md) | Milestones |

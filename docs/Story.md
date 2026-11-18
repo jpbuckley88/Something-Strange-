@@ -27,15 +27,15 @@ Level count is a scope dial. The vertical slice is Level 1. A small complete gam
 
 Rooms: basement lab, garage, kitchen, living room, hallway and stairs, Ned's bedroom, Mom's bedroom, bathroom, attic.
 
-1. **Prologue.** In the basement lab: walk, interact, start the experiment. No combat. Mom calls down the stairs.
-2. **The accident.** The rift opens. Mom is taken. The power goes out.
-3. **Unarmed.** Ned finds the goggles in his bedroom and the prototype laser on the garage workbench, harassed along the way by things he cannot yet see.
+1. **Prologue and tutorial.** Ned walks home from school, goes down to the basement lab, and finishes building the goggles and the laser. Testing them is the tutorial. The full script is in [Script.md](Script.md).
+2. **The accident.** Ned starts a second experiment, a window into the spirit realm. It does not close. Mom is taken. The power goes out.
+3. **Unarmed.** Ned has the goggles, but the surge burst the laser's power cell. He has to reach the spare in the garage, able to see what is in the house and unable to hurt it.
 4. **Clearing the house.** Kitchen, living room, upstairs, attic. Each area introduces one entity type: wisps, then a poltergeist, then a shade.
 5. **Return to the lab.** Restore the power, go back down, fight the rift demon, destroy the anchors, and seal the rift.
 6. **Ending.** The rift is closed, Mom is not there, and the street outside is not quiet.
 
 ## To write
 
-- Dialogue and subtitles for the prologue and the ending.
+- Dialogue for the ending of Level 1 (the prologue is drafted in [Script.md](Script.md)).
 - Environmental story items in the house.
 - Ned's spoken reactions, which also serve as hints.

@@ -10,7 +10,7 @@
 | Structure | Linear levels with a hub (Ned's lab) between them |
 | First target | Level 1, the house, as a complete vertical slice |
 
-The story is in [Story.md](Story.md).
+The story is in [Story.md](Story.md). The prologue, which contains the tutorial, is scripted in [Script.md](Script.md).
 
 ## Tone: scary and gory
 
