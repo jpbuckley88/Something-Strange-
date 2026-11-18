@@ -37,7 +37,7 @@ Starting values: 5 seconds of charge, 1.5 seconds before recharge begins, about 
 
 ### The flashlight
 
-Ned mounted a basic flashlight on the goggles. It costs nothing to run: no battery to manage, no charge. It is separate from the spectral vision, so it works whether or not the goggles are switched on, and it is the player's main light once the house loses power.
+Ned mounted a basic flashlight on the goggles. The player toggles it on and off with its own key (F). It costs nothing to run: no battery to manage, no charge. It is separate from the spectral vision, so it works whether or not the goggles are switched on, and it is the player's main light once the house loses power.
 
 It lights what is physically there. It does nothing to reveal unmerged parts; only the goggles do that.
 
