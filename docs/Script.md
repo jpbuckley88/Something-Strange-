@@ -1,6 +1,6 @@
 # Script: Prologue
 
-The opening of the game, from Ned walking home to the moment Level 1 begins. It runs about 15 minutes and contains the whole tutorial. Nothing in it can hurt Ned until the last scene.
+The opening of the game, from Ned arriving home to the moment Level 1 begins. It runs about 15 minutes and contains the whole tutorial. Nothing in it can hurt Ned until the last scene.
 
 First draft. Dialogue is there to be rewritten; the beats and the order of the tutorial are what matter.
 
@@ -15,8 +15,8 @@ First draft. Dialogue is there to be rewritten; the beats and the order of the t
 
 | Scene | Teaches | How |
 |---|---|---|
-| 1. The walk home | Look, move | Walk up the street to the house |
-| 2. Home | Interact, doors | Front door, the note, the fridge |
+| 1. The front door | Look, interact | Open the door while on the phone to Mom |
+| 2. Home | Move, doors | Explore the house; get the shoulder from the freezer |
 | 3. The lab | Picking things up | Collect three parts for the goggles |
 | 4. The goggles | Goggles, charge, recharge | Look at the specimen jar |
 | 5. The emitter | Fire, heat, overheating | Burn a test target |
@@ -27,44 +27,67 @@ Each instruction appears once, as a short line on screen, when the player first 
 
 ---
 
-## Scene 1: The walk home
+## Scene 1: The front door
 
-*Exterior. A quiet suburban street, late afternoon, autumn. Low sun, long shadows. NED, fifteen, walks home from school with a backpack. First person throughout: we never see his face.*
+*Exterior, the front step. Late afternoon, autumn, low sun. NED, fifteen, is home from school, backpack on, phone to his ear. First person throughout: we never see his face. The game opens facing the front door, mid-conversation.*
 
-*His phone buzzes. A text from MOM on screen:*
+**MOM:** *(on the phone; hospital noise behind her)* ...so I'm stuck here till six. Are you home?
 
-> **MOM:** Working till 6. Lasagna tonight. Do NOT start anything in the basement until I'm home.
+**NED:** Just got here.
 
-> **MOM:** I mean it. Last time the Hendersons' garage door opened by itself for a week.
+**ON SCREEN:** *Move the mouse to look.*
 
-**ON SCREEN:** *Move the mouse to look. W A S D to walk.*
+**MOM:** Okay. Two things. One: there's a pork shoulder in the freezer. Take it out and leave it on the counter, or we're eating at midnight.
 
-*Ned walks. A neighbour drags a bin to the kerb and waves. A dog behind a fence barks at him, then, as he passes, turns and barks at the empty air beside him.*
+**NED:** Shoulder. Counter. Got it.
 
-**NED:** *(muttering)* Yeah, I know. I felt it too.
+**MOM:** Two. Ned. Are you listening?
 
-*He reaches the house: two storeys, a garage, a basement window at ground level glowing faintly blue.*
+**NED:** I'm listening.
 
-**NED:** Left it running. Good. That's good. That's eight hours of data.
+**MOM:** No experiments. Nothing in the basement until I'm home.
 
-> **Scope note.** The street is the only outdoor area before Level 2, and Level 2 reuses it. If it has to be cut, start at the front door and deliver the texts there.
+**NED:** Mom...
 
-## Scene 2: Home
+**MOM:** The Hendersons' garage door opened by itself for a *week*.
+
+**NED:** That was a grounding issue, and I fixed it.
+
+**MOM:** Not. Until. I'm. Home. I want to be in the building when you blow something up. Say it back.
+
+**NED:** *(flat)* Nothing in the basement until you're home.
 
 **ON SCREEN:** *E to interact.*
 
-*Ned opens the front door. The house is warm, lived-in, a little untidy. Family photos in the hall: Ned and Mom, just the two of them, at different ages.*
+*Ned opens the front door. From here, a ground-level basement window is visible beside the step, glowing faintly blue.*
 
-*On the kitchen counter, a note in Mom's handwriting, weighed down with an apple.*
+**MOM:** Thank you. Eat something. Love you.
+
+**NED:** Love you. Bye.
+
+*He hangs up. He looks at the blue glow.*
+
+**NED:** Technically it's already running. That's not starting anything.
+
+## Scene 2: Home
+
+**ON SCREEN:** *W A S D to walk.*
+
+*The house is warm, lived-in, a little untidy. Family photos in the hall: Ned and Mom, just the two of them, at different ages.*
+
+**OBJECTIVE:** *Get the pork shoulder out of the freezer.*
+
+*The objective leads the player through the hall to the kitchen. On the counter, a note in Mom's handwriting, weighed down with an apple.*
 
 > *Eat something that isn't cereal. Love you. — M*
 
-*The player can explore freely. Every room is open and lit. Things worth finding:*
+*The freezer: the pork shoulder. Ned takes it. He looks at the counter. He does not put it on the counter.*
 
-- *The fridge: the lasagna, wrapped, with a second note: "For TONIGHT. Hands off."*
-- *The freezer: a pork shoulder. Ned takes it.*
+**NED:** She said take it out. She didn't say where.
 
-**NED:** Sorry, Mom. Science.
+**OBJECTIVE:** *Go down to the lab.*
+
+*The player can explore freely first. Every room is open and lit. Things worth finding:*
 
 - *Mom's bedroom: a nurse's uniform on the door. A framed newspaper clipping: LOCAL BOY, 12, WINS STATE SCIENCE FAIR.*
 - *Ned's bedroom: whiteboards covered in equations, one phrase circled three times: "NOT GONE. JUST OUT OF PHASE."*
@@ -78,9 +101,9 @@ Each instruction appears once, as a short line on screen, when the player first 
 
 *On the main bench: a sealed glass jar wired to a car battery, apparently empty. A monitor beside it shows a waveform, steady.*
 
-**NED:** Still there. Eight hours. You're real, you're stable, and I can't see you. Yet.
+**NED:** Still there. Nine hours. You're real, you're stable, and I can't see you. Yet.
 
-*He drops the pork shoulder on the bench. On a stand: a pair of welding goggles, gutted and rewired, three empty sockets.*
+*He drops the pork shoulder on the bench, still frozen. On a stand: a pair of welding goggles, gutted and rewired, three empty sockets.*
 
 **NED:** Lens array. Tuning coil. Power cell. Where did I...
 
@@ -148,6 +171,10 @@ Each instruction appears once, as a short line on screen, when the player first 
 
 **NED:** Okay. So don't point that at anything I like.
 
+*He looks at what is left of dinner.*
+
+**NED:** ...It's thawed.
+
 **ON SCREEN:** *Q to switch frequency.*
 
 **OBJECTIVE:** *Test the spectral frequency on the meat.*
@@ -174,15 +201,15 @@ Each instruction appears once, as a short line on screen, when the player first 
 
 *Upstairs, the front door. Keys in a bowl.*
 
-**MOM:** *(off screen, calling)* Ned? I'm home! Did you eat?
+**MOM:** *(off screen, calling)* Ned? I'm home! Did you get the shoulder out?
 
-**NED:** *(calling back)* Yes!
+**NED:** *(calling back, looking at the charred remains on the stool)* ...It's out!
 
-**MOM:** *(off)* Something that wasn't cereal?
+**MOM:** *(off)* I don't see it on the counter.
 
-**NED:** *(a pause)* ...It had fruit in it!
+**NED:** It's... thawing down here! Where it's warmer!
 
-*She laughs. Footsteps cross the kitchen. The oven door.*
+*A pause that says she does not believe him. Footsteps cross the kitchen.*
 
 *Ned pulls the tarpaulin off the thing at the far wall: a ring of salvaged electromagnets taller than he is, cabled into the house's breaker panel.*
 
@@ -192,9 +219,9 @@ Each instruction appears once, as a short line on screen, when the player first 
 
 *Three switches, in order. Each one dims the lights in the house. On the third:*
 
-**MOM:** *(off, closer; she's at the top of the stairs)* Ned, the lights are doing the thing again. What did I say about the basement?
+**MOM:** *(off, closer; she's at the top of the stairs)* Ned, the lights are doing the thing again. What did I say?
 
-**NED:** One second! Literally one second!
+**NED:** You're home! You said until you're home! One second! Literally one second!
 
 *The ring fires. In its centre, the air folds. Through it: somewhere dark, vast, and crowded.*
 
@@ -240,6 +267,7 @@ Each instruction appears once, as a short line on screen, when the player first 
 
 - **Ned starts Level 1 with goggles but no working laser.** The surge burst the emitter's power cell, and the spare is in the garage. That gives a stretch where the player can see what is in the house and cannot hurt it, then the relief of arming up. This replaces the earlier idea of finding both items after the accident. It is my suggestion; if you would rather Ned is armed from the start, cut the burst cell.
 - **The specimen in the jar** is the same kind of thing as a wisp. Hurting it in the tutorial is the first hint that these things feel, and gives Ned something to be uneasy about. It could return later.
+- **The phone call** sets up the two things the prologue pays off: the shoulder Ned burns and the promise he bends. He never quite breaks it: the specimen was already running, and Mom is home when he starts the aperture.
 - **The pork shoulder** teaches matched damage with gore that is funny in daylight. The same burn and split effects are reused on merged flesh for the rest of the game, where they are not funny.
 - **Mom's last action is protecting him.** The rescue is the whole game; it has to be earned here.
 - **The house in daylight** is the same level as the house in the dark. Build it once, light it twice.
@@ -255,4 +283,4 @@ Each instruction appears once, as a short line on screen, when the player first 
 | Tutorial targets that react to the beam (paint can, meat) | To build; the body-part component already does the damage rules |
 | The specimen jar | Mostly exists: an unmerged body part that only the goggles show |
 | Mom on screen, the arm, the grab | Animated cutscene in Sequencer; the most expensive single moment in the prologue |
-| The street | Art; shared with Level 2 |
+| The front step | A door, a step, and a backdrop; no street to build |

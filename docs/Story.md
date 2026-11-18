@@ -27,7 +27,7 @@ Level count is a scope dial. The vertical slice is Level 1. A small complete gam
 
 Rooms: basement lab, garage, kitchen, living room, hallway and stairs, Ned's bedroom, Mom's bedroom, bathroom, attic.
 
-1. **Prologue and tutorial.** Ned walks home from school, goes down to the basement lab, and finishes building the goggles and the laser. Testing them is the tutorial. The full script is in [Script.md](Script.md).
+1. **Prologue and tutorial.** Ned gets home from school, on the phone with Mom, who tells him to take the pork shoulder out of the freezer and not to start any experiments. He goes down to the basement lab anyway and finishes building the goggles and the laser. Testing them is the tutorial. The full script is in [Script.md](Script.md).
 2. **The accident.** Ned starts a second experiment, a window into the spirit realm. It does not close. Mom is taken. The power goes out.
 3. **Unarmed.** Ned has the goggles, but the surge burst the laser's power cell. He has to reach the spare in the garage, able to see what is in the house and unable to hurt it.
 4. **Clearing the house.** Kitchen, living room, upstairs, attic. Each area introduces one entity type: wisps, then a poltergeist, then a shade.
