@@ -61,6 +61,9 @@ A part's matching frequency comes from its merge amount: 0.5 or above is merged 
 | Entity data | `USSEntityDefinition` | `UPrimaryDataAsset` (parts, starting merge states, merge rate, behaviour, residue drop), once entities have real meshes |
 | Merge visuals | Master entity material | Per-part merge value blending the spectral look into the solid look; unmerged parts drawn only while the goggles are on |
 | Gore | `USSGoreComponent` | Listens to `OnPartDestroyed`: hides the part's bones, shows the stump, spawns the severed piece, blood and burn effects, and persistent decals |
+| Flashlight | Spot light on Ned's camera | Free to run; available once he has the goggles; its own toggle key |
+| Noise and senses | Noise events, hearing, sight, awareness states | Replaces chase-on-range in `ASSEntityCharacter`. Designed in [Audio.md](Audio.md) |
+| Audio | MetaSounds, sound classes, goggles mix | Planned in [Audio.md](Audio.md); most sounds attach to events that already exist |
 | Goggles look | Post-process material | Uses the custom depth stencil already enabled in `Config/DefaultEngine.ini` |
 | Story | Data tables, Sequencer | Move dialogue out of C++ into data tables; voice audio; the cutscene of Mom being taken |
 | Upgrades | `USSUpgradeDefinition`, `USSUpgradeSubsystem` | Data assets applied to goggles and laser stats |

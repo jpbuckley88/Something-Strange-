@@ -35,6 +35,12 @@ The fear comes from the gaps: knowing something is in the room and having no cha
 
 Starting values: 5 seconds of charge, 1.5 seconds before recharge begins, about 7 seconds to refill.
 
+### The flashlight
+
+Ned mounted a basic flashlight on the goggles. It costs nothing to run: no battery to manage, no charge. It is separate from the spectral vision, so it works whether or not the goggles are switched on, and it is the player's main light once the house loses power.
+
+It lights what is physically there. It does nothing to reveal unmerged parts; only the goggles do that.
+
 ## The laser
 
 Ned's invention. It fires a continuous beam and has a heat meter instead of ammunition: sustained fire overheats it and forces a cooldown.
@@ -72,6 +78,12 @@ The combat loop: read the body, pick the part, switch frequency, fire, manage he
 | Shade | Half merged | Stalks Ned; moves only when he is not looking through the goggles | Charge management and part targeting |
 | Rift demon (boss) | Merges further each phase | Guards the rift in the lab | Everything; its parts change frequency mid-fight |
 
+## Senses
+
+Entities sense Ned and react to his sounds and his interactions. They are unaware until they hear or see him, investigate where a noise came from, and hunt once they find him. Each type senses differently: wisps are drawn to the laser, the poltergeist knows what Ned has touched, the shade hears very well.
+
+Everything Ned does has a loudness, from walking on carpet to firing the laser, and closed doors cut how far noise carries. The full design is in [Audio.md](Audio.md).
+
 ## Removing them
 
 A defeated entity collapses into **residue**, which Ned collects. Each level ends by destroying the rift's anchors, visible only through the goggles, and sealing the rift.
@@ -86,6 +98,9 @@ Residue and found components are spent at the lab workbench between levels:
 
 ## Open questions
 
+- Should the flashlight make Ned easier to see?
+- Does Ned get a quiet walk or crouch?
+- Can Ned hide, or only break line of sight?
 - Does Ned have health that regenerates, or pickups?
 - Is the frequency switch instant, or does it take a moment (which would make mid-fight switching a risk)?
 - What happened to Mom in the spirit realm, and how much of it does the player see?

@@ -16,9 +16,10 @@ M4 is the decision point. If the greybox level is not tense and fun to play, cha
 
 1. Build the project in UE5 and fix any compile errors.
 2. Play the test dummy, a wisp, and a rift (see the README) and tune charge, heat, damage, and speed values.
-3. Block out the house from the room list in [Story.md](Story.md), with doors, pickups, and a navigation mesh.
+3. Block out the house from the room list in [Story.md](Story.md), using the dimensions and rules in [LevelMetrics.md](LevelMetrics.md).
 4. Place the prologue's actors in the house and hook them to the prologue director (table in the README). Then make the cutscene of Mom being taken.
-5. Write the shade and the poltergeist.
-6. Add checkpoints, then the rift demon.
+5. Add the flashlight, then noise and entity senses ([Audio.md](Audio.md)).
+6. Write the shade and the poltergeist on top of the senses.
+7. Add checkpoints, then the rift demon.
 
 Art can run in parallel from step 3: fix the art bible, then generate and clean up kitchen and living room props.
