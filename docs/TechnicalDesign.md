@@ -45,6 +45,7 @@ A part's matching frequency comes from its merge amount: 0.5 or above is merged 
 | Player | `USSHealthComponent`, `USSInventoryComponent` | |
 | Entities | `USSEntityDefinition`, `ASSEntityCharacter`, `ASSEntityAIController` | Definition as a `UPrimaryDataAsset` (parts, starting merge states, merge rate, behaviour, residue drop). Behaviour in StateTree. Attacks disabled when their part is destroyed |
 | Merge visuals | Master entity material | Per-part merge value blending the spectral look into the solid look; unmerged parts drawn only while the goggles are on |
+| Gore | `USSGoreComponent` | Listens to `OnPartDestroyed`: hides the part's bones, shows the stump, spawns the severed piece, blood and burn effects, and persistent decals |
 | Goggles look | Post-process material | Uses the custom depth stencil already enabled in `Config/DefaultEngine.ini` |
 | Rifts | `ASSRift`, `ASSRiftAnchor` | Spawns entities; sealed when all anchors are destroyed |
 | Story | `USSObjectiveSubsystem`, `USSDialogueSubsystem` | Objectives and subtitles from data tables; cutscenes in Sequencer |

@@ -6,11 +6,22 @@
 |---|---|
 | Genre | Story-driven first-person shooter, ghost hunting horror |
 | Players | Single-player |
-| Tone | Spooky adventure-horror: tense and creepy, not gory |
+| Tone | Mature horror: frightening and gory. No audience rating to design down to |
 | Structure | Linear levels with a hub (Ned's lab) between them |
 | First target | Level 1, the house, as a complete vertical slice |
 
 The story is in [Story.md](Story.md).
+
+## Tone: scary and gory
+
+The game is meant to frighten, and it shows what it does to bodies.
+
+- **Merged parts are meat.** Whatever has crossed over is wet, raw, and wrong: exposed muscle, too many joints, bone where skin should be. The seam where a merged part meets an unmerged one is an open wound.
+- **The laser cuts.** Destroying a merged part burns through it and severs it. Parts char, split, and drop, and what is left of the entity keeps coming. Destroying a spectral part tears it apart without blood, so the two frequencies feel different to use.
+- **Merging is body horror.** A part crossing over is seen and heard: it forces its way through, tearing and setting.
+- **The house keeps the evidence.** Blood, residue, and remains stay where they fell. Rooms Ned has fought in look like it.
+- **Ned can die badly.** Each entity type has its own kill.
+- **Fear first, gore second.** Gore lands harder after quiet. Dark rooms, sounds from the next room, and an empty goggle charge do most of the work; the gore is the payoff, not the wallpaper.
 
 ## The goggles
 
@@ -77,4 +88,4 @@ Residue and found components are spent at the lab workbench between levels:
 
 - Does Ned have health that regenerates, or pickups?
 - Is the frequency switch instant, or does it take a moment (which would make mid-fight switching a risk)?
-- How dark is the tone allowed to get in the spirit realm?
+- What happened to Mom in the spirit realm, and how much of it does the player see?

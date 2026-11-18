@@ -48,6 +48,7 @@ With Nanite enabled these matter less for static meshes, but lower counts keep f
 ## What needs manual work
 
 - **Entities.** Part targeting needs each entity rigged to a skeleton, with each body part (head, arms, legs, torso, core) on its own material slot so it can be textured and merged independently. In Blender: retopologise the Tripo mesh, rig it, assign one material slot per part, and author two texture sets (solid and spectral). In Unreal the skeletal mesh needs a physics asset so the laser can hit individual bones. This is the most labour-heavy asset type in the game; keep the entity count low.
+- **Gore.** Severing a part needs a capped stump on the body and a separate mesh for the piece that falls off, per part, per entity. Plan these when the entity is modelled, not after. Blood and burn marks are decals and particle effects made in Unreal, not Tripo assets.
 - **The laser and Ned's arms.** They fill the screen in first person and need clean topology, separate moving parts (dial, vents), and correct pivots. Treat Tripo output as a starting block.
 - **Mom and Ned.** Keeping Ned in first person throughout and Mom's screen time short saves the most character work.
 - **The house itself.** Build walls, floors, stairs, and doors as modular pieces in Blender or with Unreal's modelling tools. Tripo fills the rooms with props.
