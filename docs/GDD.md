@@ -52,7 +52,7 @@ It has a **frequency selector**, which is the game's ammunition change: same wea
 | Material | Orange | Parts that have merged into our world |
 | Spectral | Blue | Parts still on the spirit frequency |
 
-Starting values: matched damage is doubled, mismatched damage is cut to a fifth; 4 seconds of continuous fire to overheat.
+Starting values: matched damage is doubled, the wrong frequency does no damage at all; 4 seconds of continuous fire to overheat.
 
 Later levels can add frequencies for new entity families.
 

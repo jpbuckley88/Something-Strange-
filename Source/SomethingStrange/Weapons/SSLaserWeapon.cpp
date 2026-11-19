@@ -53,6 +53,9 @@ void ASSLaserWeapon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	bBeamOnEntity = false;
+	BeamPartName = NAME_None;
+
 	if (IsBeamActive())
 	{
 		TimeSinceBeamStopped = 0.f;
@@ -108,7 +111,21 @@ void ASSLaserWeapon::FireBeam(float DeltaTime)
 		{
 			if (USSBodyPartComponent* BodyParts = HitActor->FindComponentByClass<USSBodyPartComponent>())
 			{
-				BodyParts->ApplyBeamDamage(Hit, CurrentFrequency, DamagePerSecond * DeltaTime);
+				bBeamOnEntity = true;
+
+				// Read the part before the damage lands: destroying it can remove the entity.
+				const int32 PartIndex = BodyParts->FindPartIndexFromHit(Hit);
+				if (PartIndex != INDEX_NONE)
+				{
+					const FSSBodyPartState Part = BodyParts->Parts[PartIndex];
+					const float Damage = BodyParts->ApplyBeamDamage(Hit, CurrentFrequency, DamagePerSecond * DeltaTime);
+					const float HealthLeft = Part.bIndestructible ? Part.Health : FMath::Max(0.f, Part.Health - Damage);
+
+					BeamPartName = Part.PartName;
+					bBeamMatched = Part.GetMatchingFrequency() == CurrentFrequency;
+					bBeamPartMerged = Part.IsMerged();
+					BeamPartHealthFraction = Part.MaxHealth > 0.f ? HealthLeft / Part.MaxHealth : 0.f;
+				}
 			}
 		}
 	}

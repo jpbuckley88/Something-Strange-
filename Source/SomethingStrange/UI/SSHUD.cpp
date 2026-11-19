@@ -52,6 +52,33 @@ void ASSHUD::DrawHUD()
 	const FLinearColor CrosshairColor = Laser ? Laser->GetBeamColor() : FLinearColor::White;
 	DrawRect(CrosshairColor, CenterX - 2.f, CenterY - 2.f, 4.f, 4.f);
 
+	// Stand-in for hit effects and sound: says what the beam is on and whether the frequency is right.
+	if (Laser && Laser->IsBeamOnEntity())
+	{
+		const float ReadoutY = CenterY + 40.f;
+		if (Laser->GetBeamPartName().IsNone())
+		{
+			DrawCenteredText(TEXT("NO EFFECT - not a weak point"), FLinearColor(0.7f, 0.7f, 0.7f), ReadoutY, 1.3f);
+		}
+		else
+		{
+			const FString PartText = FString::Printf(TEXT("%s (%s)  %d%%"),
+				*Laser->GetBeamPartName().ToString().ToUpper(),
+				Laser->IsBeamPartMerged() ? TEXT("merged") : TEXT("unmerged"),
+				FMath::CeilToInt(Laser->GetBeamPartHealthFraction() * 100.f));
+			DrawCenteredText(PartText, FLinearColor::White, ReadoutY, 1.3f);
+
+			if (Laser->IsBeamMatched())
+			{
+				DrawCenteredText(TEXT("MATCHED - full damage"), FLinearColor(0.3f, 1.f, 0.3f), ReadoutY + 24.f, 1.3f);
+			}
+			else
+			{
+				DrawCenteredText(TEXT("WRONG FREQUENCY - no damage, press Q"), FLinearColor(1.f, 0.2f, 0.2f), ReadoutY + 24.f, 1.3f);
+			}
+		}
+	}
+
 	float Y = Canvas->SizeY - Margin - BarHeight;
 
 	if (Laser)

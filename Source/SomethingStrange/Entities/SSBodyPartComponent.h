@@ -5,6 +5,8 @@
 #include "Core/SSTypes.h"
 #include "SSBodyPartComponent.generated.h"
 
+class UMaterialInterface;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSSOnPartMergeChanged, FName, PartName, bool, bMerged);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FSSOnPartDestroyed, FName, PartName);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FSSOnPartDamaged, FName, PartName, ESSFrequency, Frequency, bool, bMatched, float, BaseDamage);
@@ -50,9 +52,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Parts", meta = (ClampMin = "0.0"))
 	float MatchedDamageMultiplier = 2.f;
 
-	/** Damage multiplier when it does not. */
+	/** Damage multiplier when it does not. The wrong frequency does nothing. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Parts", meta = (ClampMin = "0.0"))
-	float MismatchedDamageMultiplier = 0.2f;
+	float MismatchedDamageMultiplier = 0.f;
 
 	/** Destroy the owning actor when its core is destroyed. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Parts")
@@ -64,6 +66,14 @@ public:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Parts")
 	bool bTintPlaceholderMeshes = false;
+
+	/** Translucent glow given to unmerged stand-in parts so they read as not fully here. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Parts")
+	TObjectPtr<UMaterialInterface> EtherealMaterial;
+
+	/** How solid unmerged stand-in parts look through the goggles. */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Body Parts", meta = (ClampMin = "0.0", ClampMax = "1.0"))
+	float EtherealOpacity = 0.35f;
 
 	/** Fired when a part crosses between unmerged and merged. */
 	UPROPERTY(BlueprintAssignable, Category = "Body Parts")

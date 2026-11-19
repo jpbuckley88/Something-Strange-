@@ -6,6 +6,8 @@
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "Materials/MaterialInterface.h"
+#include "UObject/ConstructorHelpers.h"
 #include "Spectral/SSSpectralSubsystem.h"
 
 namespace
@@ -17,6 +19,11 @@ namespace
 USSBodyPartComponent::USSBodyPartComponent()
 {
 	PrimaryComponentTick.bCanEverTick = true;
+
+	// Engine material: unlit, translucent, with a "Color" parameter whose alpha is the opacity.
+	static ConstructorHelpers::FObjectFinder<UMaterialInterface> Ethereal(
+		TEXT("/Engine/EngineDebugMaterials/M_SimpleUnlitTranslucent.M_SimpleUnlitTranslucent"));
+	EtherealMaterial = Ethereal.Object;
 }
 
 void USSBodyPartComponent::BeginPlay()
@@ -219,10 +226,18 @@ void USSBodyPartComponent::RefreshPartVisibility()
 
 			if (bTintPlaceholderMeshes)
 			{
-				// The engine's basic shape material exposes a "Color" parameter.
-				if (UMaterialInstanceDynamic* Material = Primitive->CreateDynamicMaterialInstance(0))
+				// Merged parts are solid; unmerged parts are a see-through glow.
+				const bool bEthereal = !Part.IsMerged() && EtherealMaterial;
+				Primitive->SetCastShadow(!bEthereal);
+
+				// Back to the mesh's own material first, so a part that has just merged turns solid.
+				Primitive->SetMaterial(0, nullptr);
+				if (UMaterialInstanceDynamic* Material = Primitive->CreateDynamicMaterialInstance(0, bEthereal ? EtherealMaterial.Get() : nullptr))
 				{
-					Material->SetVectorParameterValue(TEXT("Color"), Part.IsMerged() ? MergedTint : UnmergedTint);
+					// Both the basic shape material and the ethereal one expose a "Color" parameter.
+					FLinearColor Tint = Part.IsMerged() ? MergedTint : UnmergedTint;
+					Tint.A = bEthereal ? EtherealOpacity : 1.f;
+					Material->SetVectorParameterValue(TEXT("Color"), Tint);
 				}
 			}
 

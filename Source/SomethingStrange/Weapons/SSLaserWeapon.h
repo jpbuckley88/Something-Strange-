@@ -49,6 +49,16 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Laser")
 	FLinearColor GetBeamColor() const;
 
+	/** True while the beam is landing on something that has body parts. */
+	bool IsBeamOnEntity() const { return bBeamOnEntity; }
+
+	/** The part under the beam, or None when the beam is on a section that is not a part. */
+	FName GetBeamPartName() const { return BeamPartName; }
+
+	bool IsBeamMatched() const { return bBeamMatched; }
+	bool IsBeamPartMerged() const { return bBeamPartMerged; }
+	float GetBeamPartHealthFraction() const { return BeamPartHealthFraction; }
+
 	/** Damage per second before the matched or mismatched multiplier. */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Laser", meta = (ClampMin = "0.0"))
 	float DamagePerSecond = 40.f;
@@ -99,4 +109,11 @@ private:
 	float TimeSinceBeamStopped = 0.f;
 	bool bWantsToFire = false;
 	bool bOverheated = false;
+
+	// What the beam landed on this frame.
+	bool bBeamOnEntity = false;
+	FName BeamPartName;
+	bool bBeamMatched = false;
+	bool bBeamPartMerged = false;
+	float BeamPartHealthFraction = 0.f;
 };
