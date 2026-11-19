@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.6",
+	"EngineAssociation": "5.8",
 	"Category": "",
 	"Description": "Story-driven FPS ghost hunting horror game.",
 	"Modules": [
@@ -8,6 +8,12 @@
 			"Name": "SomethingStrange",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "Fab",
+			"Enabled": false
 		}
 	]
 }

@@ -53,15 +53,15 @@ void ASSEntityCharacter::BeginPlay()
 UStaticMeshComponent* ASSEntityCharacter::AddPlaceholderPart(FName PartName, UStaticMesh* Shape, const FVector& Location,
 	const FVector& Scale, float MaxHealth, bool bMerged, bool bIsCore)
 {
-	UStaticMeshComponent* Mesh = CreateDefaultSubobject<UStaticMeshComponent>(PartName);
-	Mesh->SetupAttachment(RootComponent);
-	Mesh->SetStaticMesh(Shape);
-	Mesh->SetRelativeLocation(Location);
-	Mesh->SetRelativeScale3D(Scale);
-	Mesh->ComponentTags.Add(PartName);
-	Mesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-	Mesh->SetCollisionResponseToAllChannels(ECR_Ignore);
-	Mesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+	UStaticMeshComponent* PartMesh = CreateDefaultSubobject<UStaticMeshComponent>(PartName);
+	PartMesh->SetupAttachment(RootComponent);
+	PartMesh->SetStaticMesh(Shape);
+	PartMesh->SetRelativeLocation(Location);
+	PartMesh->SetRelativeScale3D(Scale);
+	PartMesh->ComponentTags.Add(PartName);
+	PartMesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	PartMesh->SetCollisionResponseToAllChannels(ECR_Ignore);
+	PartMesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
 	FSSBodyPartState Part;
 	Part.PartName = PartName;
@@ -72,7 +72,7 @@ UStaticMeshComponent* ASSEntityCharacter::AddPlaceholderPart(FName PartName, USt
 	BodyParts->Parts.Add(Part);
 	BodyParts->bTintPlaceholderMeshes = true;
 
-	return Mesh;
+	return PartMesh;
 }
 
 bool ASSEntityCharacter::CanAttack() const

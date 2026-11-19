@@ -19,10 +19,10 @@ Ned is a teenage genius. One of his experiments tears open the spirit realm, let
 
 ## Getting started
 
-Requirements: Unreal Engine 5.6 or newer with C++ build tools (Visual Studio on Windows, Xcode on macOS), and Git LFS.
+Requirements: Unreal Engine 5.8 with C++ build tools (Visual Studio on Windows, Xcode on macOS), and Git LFS.
 
 1. Run `git lfs install` once, then clone the repository.
-2. If your engine is not 5.6, right-click `SomethingStrange.uproject` and choose **Switch Unreal Engine version**.
+2. If your engine is not 5.8, right-click `SomethingStrange.uproject` and choose **Switch Unreal Engine version**.
 3. Right-click `SomethingStrange.uproject` and choose **Generate project files**, then open it and let it build.
 
 ## Trying the prototype

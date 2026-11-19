@@ -2,7 +2,7 @@
 
 | # | Milestone | Done when | Status |
 |---|---|---|---|
-| M0 | Repo and project skeleton | Project opens and compiles in UE5; docs committed | Code and docs committed; first compile pending |
+| M0 | Repo and project skeleton | Project opens and compiles in UE5; docs committed | Done: compiles and loads in UE 5.8 |
 | M1 | Greybox house, movement, interaction | Walk a blockout of the whole house; open doors, pick things up | Movement, interaction, door, pickups, and power switch are written; needs the house blockout |
 | M2 | Goggles and laser | Goggles reveal hidden test objects on a charge; laser fires, switches frequency, and overheats; a test dummy with merged and unmerged parts takes increased damage only from the matched frequency | Written, with the test dummy; needs playtesting and tuning |
 | M3 | Entities | Wisp, poltergeist, and shade behave as designed; parts can be destroyed individually, and merging progresses over time | Entity base class and wisp written; poltergeist and shade to do |

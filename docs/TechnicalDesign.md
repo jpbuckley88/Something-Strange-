@@ -31,7 +31,9 @@ One runtime C++ module, `SomethingStrange`. Single-player, so nothing is replica
 | Rifts | `World/SSRift`, `World/SSRiftAnchor` | Spawns entities until all its anchors are destroyed, then seals |
 | HUD | `UI/SSHUD` | Canvas-drawn crosshair, bars, and prompts |
 
-None of this has been compiled yet: it was written without access to Unreal Engine. Expect to fix a few compile errors on first build.
+All of this compiles and loads in UE 5.8. None of it has been played yet.
+
+The Fab plugin is disabled in `SomethingStrange.uproject`. An update to it left the UE 5.8 install's precompiled build rules out of date, which stops any C++ project from building while it is enabled. Re-enable it once the engine install is repaired.
 
 ## How a laser hit is resolved
 
